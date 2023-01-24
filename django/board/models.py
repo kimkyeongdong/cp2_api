@@ -1,12 +1,13 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 User = settings.AUTH_USER_MODEL
 
 class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=200)
     content = models.TextField()
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(default=timezone.now)
     modify_date = models.DateTimeField(null=True, blank=True)
     #수정날짜 추가 blank=True: form.is_vaild()통한 데이터 검증 시 값이 없어도 된다
 
@@ -18,7 +19,7 @@ class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)  # Question 상속
     content = models.TextField()
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(default=timezone.now)
     modify_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):

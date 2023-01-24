@@ -4,7 +4,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from api.serializers import UserSerializer, GroupSerializer
+from common.serializers import UserSerializer, GroupSerializer
+from board.models import Question, Answer
+from board.serializers import QuestionSerializer, AnswerSerializer
 
 from django.contrib.auth import get_user_model
 
@@ -24,4 +26,22 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Question.objects.all().order_by('-create_date')
+    serializer_class = QuestionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class AnswerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Answer.objects.all().order_by('-create_date')
+    serializer_class = AnswerSerializer
     permission_classes = [permissions.IsAuthenticated]
