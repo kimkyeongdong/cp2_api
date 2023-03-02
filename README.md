@@ -3,7 +3,9 @@
 ## Team member
 * 김경동
 > REST API 유닛 테스트 구현
+
 > REST API ,airflow를 AWS EC2 배포 및 S3, RDS 세팅
+
 > Airflow ETL pipeline 구축
 
 * 우병일
