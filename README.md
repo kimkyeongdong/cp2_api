@@ -8,6 +8,8 @@
 
 > Airflow ETL pipeline 구축
 
+> API 문서 작성
+
 * 우병일
 > REST API 집계 구현
 
